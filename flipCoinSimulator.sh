@@ -1,19 +1,23 @@
 #!/bin/bash
 echo "Flip Coin Simulation Problem"
-
-isHead=1
-Heads=0
-Tails=0
-maxWins=21
-while [ $Heads -lt $maxWins -a $Tails -lt $maxWins ]
+winScore=0
+while [ $winScore -lt 2 -a $winScore -ge -2 ]
 do
-	flipCoin=$((RANDOM%2))
-	if [ $flipCoin -eq $isHead ]
-	then
-		((Heads++))
-	else
-		((Tails++))
-	fi
+	isHead=1
+	Heads=0
+	Tails=0
+	maxWins=21
+	while [ $Heads -lt $maxWins -a $Tails -lt $maxWins ]
+	do
+		flipCoin=$((RANDOM%2))
+		if [ $flipCoin -eq $isHead ]
+		then
+			((Heads++))
+		else
+			((Tails++))
+		fi
+	done
+	winScore=$((Heads-Tails))
 done
 if [ $Heads -eq $maxWins ]
 then
