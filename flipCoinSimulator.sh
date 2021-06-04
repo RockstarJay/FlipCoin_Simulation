@@ -1,11 +1,11 @@
 #!/bin/bash
 echo "Flip Coin Simulation Problem"
 
-read -p "How Many Time you Want To Flip The Coin : " n
 isHead=1
 Heads=0
 Tails=0
-for (( i=0; i<n; i++ ))
+maxWins=21
+while [ $Heads -lt $maxWins -a $Tails -lt $maxWins ]
 do
 	flipCoin=$((RANDOM%2))
 	if [ $flipCoin -eq $isHead ]
@@ -15,5 +15,14 @@ do
 		((Tails++))
 	fi
 done
-echo "Head Wins $Heads Times"
-echo "Tail Wins $Tails Times"
+if [ $Heads -eq $maxWins ]
+then
+	winScore=$((Heads-Tails))
+	echo "Heads Won by $winScore"
+elif [ $Tails -eq $maxWins ]
+then
+	winScore=$((Tails-Heads))
+	echo "Tails Won By $winScore"
+else
+	echo "Its a Tie"
+fi
